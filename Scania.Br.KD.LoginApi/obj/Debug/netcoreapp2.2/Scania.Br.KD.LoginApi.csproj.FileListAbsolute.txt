@@ -1,0 +1,14 @@
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\bin\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.deps.json
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\bin\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.runtimeconfig.json
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\bin\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.runtimeconfig.dev.json
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\bin\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.dll
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.csprojAssemblyReference.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.csproj.CoreCompileInputs.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.RazorAssemblyInfo.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.RazorAssemblyInfo.cs
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.AssemblyInfoInputs.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.AssemblyInfo.cs
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.RazorTargetAssemblyInfo.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\bin\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.pdb
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.dll
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.LoginApi\obj\Debug\netcoreapp2.2\Scania.Br.KD.LoginApi.pdb

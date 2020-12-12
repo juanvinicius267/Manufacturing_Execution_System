@@ -1,0 +1,473 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="lib/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="lib/fullcalendar/fulcalendar.min.css" rel="stylesheet" />
+    <title> Container Schedule   </title>
+</head>
+<body>
+
+    <center style="display:block;margin: auto" id="loading">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </center>
+    <div id="main-content">
+        <center>
+            <br />
+            <button id="addContaner">Adicionar conteiner</button>
+        </center>
+    
+        <div class="row">
+            <!-- Form Schedule Container -->
+            <div class="col-11 col-md-6" id="scheduleContainer">
+                <center>
+                    <div style="width:600px;border:solid">
+                        <h4>Entre com as informações do conteiner</h4>
+                        <div class="row">
+                            <!-- Batch Id -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Remessa</label>
+                                    <div class=" row col-sm-10">
+                                        <input type="text" maxlength="3" class="form-control form-control-sm col-12 col-sm-3" id="batchId" placeholder="Ex: ZAT">
+                                        <p class="col-1 col-sm-1"></p>
+                                        <input type="number" max="4" class="form-control form-control-sm col-12 col-sm-3" id="batchIdNumber" placeholder="Ex: 2">
+                                        <p class="col-1 col-sm-1">/</p>
+                                        <input type="number" max="2" class="form-control form-control-sm col-12 col-sm-3" id="batchIdYear" placeholder="Ex: 20">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Container Number -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nº do Conteiner</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control form-control-sm" id="containerNumber" placeholder="Ex: 1">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Start Date Time -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Inicio da estufagem</label>
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <input type="date" class="form-control form-control-sm" id="startDate">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="time" class="form-control form-control-sm" id="startTime">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Date Time -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Fim da estufagem</label>
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <input type="date" class="form-control form-control-sm" id="endDate">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="time" class="form-control form-control-sm" id="endTime">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Line -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Linha</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="line"></select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Dock -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Doca</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="dock"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- containerType -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tipo de Conteiner</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="containerType"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- License Plate -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Placa do Conteiner</label>
+                                    <div class="row col-sm-10">
+
+                                        <input type="text" maxlength="3" class="form-control form-control-sm col-4 " id="licensePlate" placeholder="Ex: EEG">
+                                        <p class="col-1">-</p>
+                                        <input type="number" class="form-control form-control-sm col-4" id="licensePlateNumber" placeholder="Ex: 9999">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Shipping Company -->
+                            <div class="col-11 col-md-11">
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Transportadora</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="company"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="col-12 col-md-12">
+                                <div class="row">
+                                    <center class="col-12 col-md-6">
+                                        <button class="btn" id="cancel" style="background-color:red">Cancelar</button>
+                                    </center>
+                                    <center class="col-12 col-md-6">
+                                        <button class="btn" id="save" style="background-color:dodgerblue">Salvar</button>
+                                    </center>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </center>
+
+            </div>
+            <!-- Calendar -->
+            <div class="col-11 col-md-5" id="calendarDiv">
+                <center>
+                    <div class="col-11 col-md-10" id="calendar" style="max-height:600px"></div>
+                </center>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/fullcalendar/moment.min.js"></script>
+    <script src="lib/fullcalendar/moment-with-locales.min.js"></script>
+    <script src="lib/fullcalendar/fullcalendar.min.js"></script>
+  
+    
+
+    <script type="text/javascript">
+        var urlBase = "http://localhost:5000/";
+        $("#main-content").hide();
+        $("#scheduleContainer").hide();
+        $("#calendarDiv").removeClass();
+        
+        
+       
+        //Principal Routine
+        $(document).ready(function () {
+            $("#loading").hide();
+            $("#main-content").show();
+            // function that sets the initial parameters of the calendar
+            setParametersOfCalendar();
+            // Button that open the schedule container modal
+            $("#addContaner").on('click', function () {
+                showSchedule();
+            });
+            // Button that close the schedule container modal
+            $("#cancel").on('click', function () {
+                hideSchedule();
+            });
+            //Create new container on database
+            $("#save").on('click', function () {        
+               ReadDataFromHTML();              
+            });
+            //Get information from data base and write in Forms
+            
+
+           
+        });
+
+
+        function ajaxDeleteItem(_id) {
+            console.log(_id);
+            $.ajax({
+                url: urlBase + 'api/Container/' + _id,
+                type: 'DELETE',
+                
+                error: function () {
+                    alert('Não foi possivel deletar o item, tente novamente mais tarde!!!')
+                },
+                success: function (data) {
+                    location.reload();
+                }
+            });
+        }
+        function SendDataToDatabase(_data) {
+            $.ajax({
+                url: urlBase + "api/Container",
+                type: 'POST',
+                contentType: "application/json",
+                data: _data,       
+                error: function () {
+                    
+                },
+                success: function (data) {
+                    hideSchedule();
+                    location.reload();
+                },
+
+            });
+
+        }
+        function ReadDataFromHTML() {
+            var allFill = 0;
+            var arrayQuery = [$("#batchId"), $("#batchIdNumber"), $("#batchIdYear"), $("#containerNumber"),
+            $("#startDate"), $("#startTime"), $("#endDate"), $("#endTime"), $("#line"), $("#line"),
+            $("#dock"), $("#dock"), $("#containerType"), $("#containerType"), $("#licensePlate"),
+                $("#licensePlateNumber")];//, $("#company"), $("#company")];
+
+
+
+            for (var i = 0; i < arrayQuery.length; i++) {
+                if (arrayQuery[i].val() === null || arrayQuery[i].val() === "") {
+                    arrayQuery[i].css('background-color', 'rgba(255, 31, 31, 0.47)');
+                    arrayQuery[i].css('border-color', 'red');
+                } else {
+                    arrayQuery[i].css('background-color', 'white');
+                    arrayQuery[i].css('border-color', 'rgba(0, 0, 0, 0.20)');
+                    allFill++;
+                }
+            }
+
+            if (allFill === arrayQuery.length) {
+                var data = {
+                    "batchId": ($("#batchId").val() + "" + $("#batchIdNumber").val() + "/" + $("#batchIdYear").val()).toUpperCase().toString(),
+                    "container_Number": $("#containerNumber").val().toString(),
+                    "star_Date": ($("#startDate").val() + "T" + $("#startTime").val()).toString(),
+                    "end_Date": ($("#endDate").val() + "T" + $("#endTime").val()).toString(),
+                    "line": $("#line").val().toUpperCase().toString(),
+                    "dock": 1,
+                    "create_Date": "2020-03-15T00:00:00",
+                    "edit_Date": null,
+                    "user_Create": "ssbjvq",
+                    "user_Edit": "ssbjvq",
+                    "container_Type": $("#containerType").val().toString(),
+                    "license_Plate": $("#licensePlate").val().toUpperCase().toString() + "-" + $("#licensePlateNumber").val(),
+                    "shipping_Company":"TESTE" //$("#company").val().toUpperCase().toString()
+                }
+
+                SendDataToDatabase(JSON.stringify(data));
+                return data;
+            }
+
+        }
+        function AjaxCalls() {           
+                
+             var arrayLinks = ['api/Line', 'api/Dock', 'api/ContainerType', ''];
+            var arrayQuery = [$("#line"), $("#dock"), $("#containerType"), $("#company")];
+            var info;
+            $.get(urlBase + arrayLinks[0],  function (data, status) {
+                for (var n = 0; n < data.length; n++) {
+                    console.log(data)
+                    arrayQuery[0].append(`
+                        <option id="${data[n].id}" value="${data[n].line_Description}">${data[n].line_Description}</option>
+                    `);
+                };
+             });
+             $.get(urlBase + arrayLinks[1], function (data, status) {
+                 for (var n = 0; n < data.length; n++) {
+                     console.log(data)
+                     arrayQuery[1].append(`
+                        <option id="${data[n].id} value="${data[n].dock_Description}"">${data[n].dock_Description}</option>
+                    `);
+                 };
+             });
+             $.get(urlBase + arrayLinks[2], function (data, status) {
+                 for (var n = 0; n < data.length; n++) {
+                     console.log(data)
+                     arrayQuery[2].append(`
+                        <option id="${data[n].id} value="${data[n].tipo}"">${data[n].tipo}</option>
+                    `);
+                 };
+             });
+             
+             //$.get("http://checklistoea.sa-east-1.elasticbeanstalk.com/api/CadastroDeEmpresas/GetEmpresas", function (data, status) {
+             //    for (var n = 0; n < data.length; n++) {
+             //        console.log(data)
+             //        arrayQuery[3].append(`
+             //           <option id="${data[n].id} value="${data[n].razaoSocial}"">${data[n].razaoSocial}</option>
+             //       `);
+             //    };
+             //});
+            
+        }        
+        function writeDataOnform(_data, query) { // Write data on Section
+            for (var i = 0; i <= _data.length; i++) {
+                query.append(`
+                                <option id="${_data.id}">${_data.line_Description}</option>
+                            `);
+            };
+        }
+        function getInfoFromDatabase(_url) { //Return data from database
+            $.get(_url, function (data, status) {
+                console.log(data)
+                return data;
+            });
+        }
+        function clearForms() {
+            $("#batchId").val('');
+            $("#batchIdNumber").val('');
+            $("#batchIdYear").val('');
+            $("#containerNumber").val('');
+            $("#startDate").val('');
+            $("#startTime").val('');
+            $("#endDate").val('');
+            $("#endTime").val('');
+            $("#line").val('');
+            $("#dock").val('');
+            $("#containerType").val('');
+            $("#licensePlate").val('');
+            $("#dock").val('');
+            $("#dock").val('');
+            $("#dock").val('');
+
+        }
+        function hideSchedule() {
+            $("#scheduleContainer").hide();
+            $("#calendarDiv").removeClass();
+            $("#calendarDiv").addClass("col-10 col-md-10");
+            $("#calendarDiv").css("display", 'block');
+            $("#calendarDiv").css("margin-left", 'auto');
+            $("#calendarDiv").css("margin-right", 'auto');
+            $("#calendar").css("height", '400px');
+            clearForms();
+        }
+        function showSchedule() {
+            clearForms();
+            $("#scheduleContainer").show();
+            $("#calendarDiv").removeClass();
+            $("#calendarDiv").addClass("col-11 col-md-5");
+            setTime();
+            
+            
+        }
+        function setParametersOfCalendar(themeSystem) {
+            var info = [];
+          
+            $.get(urlBase + "api/Container", function (data, status) {
+                console.log(data);
+
+                for (var i = 0; i < data.length; i++) {
+                    
+                    info[i] = {
+                        _id: data[i].id,
+                        title: data[i].batchId.replace("/", "-"),
+                        start: data[i].star_Date.replace("/", "-"),
+                        end: data[i].end_Date
+                    };
+                    
+                    
+                }
+                
+                $('#calendar').fullCalendar({
+                    plugins: ['list'],
+                    header: {
+                        left: 'month,agendaWeek,agendaDay',
+                        center: 'title',
+                        right: 'today prev,next'
+                    },
+                    dayClick: function (date, jsEvent, view) {
+                        console.log('clicked on ' + date.format());
+                    },
+                    eventClick: function (arg) {
+                      
+                        if (confirm('Você gostaria de deletar o agendamento?')) {
+                            var id = arg._id;
+                            ajaxDeleteItem(id);
+                        }
+                    },
+                    selectable: true,
+                    selectMirror: true,
+                    select: function (arg) {
+                        var title;//= prompt('Event Title:');
+
+                        //if (title) { }
+                        
+                            //calendar.addEvent({
+                            //    title: title,
+                            //    start: arg.start,
+                            //    end: arg.end,
+                            //    allDay: arg.allDay
+                            //})
+                        
+                        //calendar.unselect()
+                    },
+                    themeSystem: 'slate', //Set Style
+                    locale: 'en', //Set language
+                    navLinks: true,// allow redirect to another page
+                    weekNumbers: true, // show week numbers
+                    weekNumbersWithinDays: true,
+                    weekNumberCalculation: 'ISO',
+                    editable: true,// allow be etitable
+                    eventLimit: false,
+                    events: info
+
+                });
+            });
+
+            AjaxCalls();
+
+
+        }
+        function setTime() {
+            Date.prototype.yyyymmdd = function () {
+                var yyyy = this.getFullYear().toString();
+                var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+                var dd = this.getDate().toString();
+                return yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]); // padding
+            };
+
+            var date = new Date();
+            console.log(date.yyyymmdd());
+            var strDate = date.yyyymmdd();
+            var today = new Date();
+            var time = today.getHours() + ":" + today.getMinutes();
+            var timePlus = (today.getHours() + 1) + ":" + today.getMinutes();//+ ":" + today.getSeconds();
+            var year = today.getYear().toString().substr(-2)
+            console.log(year.substr(-2));
+            document.getElementById("startDate").value = strDate.toString();
+            document.getElementById("endDate").value = strDate.toString();
+            document.getElementById("endTime").value = timePlus;
+            document.getElementById("startTime").value = time;
+            document.getElementById("batchIdYear").value = year;
+        };
+    </script>
+</body>
+</html>

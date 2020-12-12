@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        min-height: 100%;
+        overflow: hidden;
+    }
+
+    #timer {
+        display: inline;
+        color: silver;
+    }
+
+    #turno {
+        display: inline;
+        font-size: 30px;
+        border-style: solid;
+        padding: 45.5px 20px;
+    }
+
+    #stopTime {
+        color: red;
+    }
+
+    .timerSize {
+        font-size: 5vh;
+    }
+
+    .timeOfShift {
+        font-size: 4vh;
+        border-style: solid;
+    }
+
+    .andons {
+        display: inline;
+        font-size: 50px;
+        border-style: solid;
+        background-color: green;
+        padding: 10px 20px;
+    }
+
+    #nomes {
+        font-size: 3vh;
+        color: silver;
+    }
+
+    #objetivo {
+        font-size: 7vh;
+        color: green;
+    }
+
+    #atual {
+        font-size: 7vh;
+    }
+
+    #container {
+        font-size: 4vh;
+    }
+
+    table {
+        font-size: 6vh;
+    }
+</style>
+</head>
+<body>
+<div style="background-color: black; color: white; overflow: hidden;">
+    <header>
+        <center class="row">
+            <div class="col-12 col-md-2" id=""></div>
+            <div class="andons col-12 col-md-1" id="andon_0">1</div>
+            <div class="andons col-12 col-md-1" id="andon_1">2</div>
+            <div class="andons col-12 col-md-1" id="andon_2">3</div>
+            <div class="andons col-12 col-md-1" id="andon_3">4</div>
+            <div class="andons col-12 col-md-1" id="andon_4">5</div>
+            <div class="andons col-12 col-md-1" id="andon_5">6</div>
+            <div class="andons col-12 col-md-1" id="andon_6">7</div>
+            <div class="andons col-12 col-md-1" id="andon_7">8</div>
+        </center>
+    </header>
+    <main>
+
+        <center class="row">
+            <div class="col-6 col-md-6 timerSize" id="takt">00:00</div>
+            <div class="col-6 col-md-6 timerSize" id="stopTime">00:00</div>
+            @*<div class="col-12 col-md-6" id="nomes">TIMER</div>
+            <div class="col-12 col-md-6" id="nomes">STOP TIME</div>*@
+        </center>
+        <center class="row">
+            <div class="col-6 col-md-6">
+                    <div id="objetivo">000</div>
+                    <div id="nomes">OBJETIVO</div>
+                    <!--<div id="nomes">TOTAL DE RODADAS: 100</div>-->
+            </div>
+            <div class="col-6 col-md-6">
+                <div class="col-6 col-md-6" id="atual">000</div>
+                <div id="nomes">PRODUZIDOS</div>
+                <!--<div id="nomes">RODADAS CONCLUIDAS: 50</div>-->
+                </div>
+        </center>
+        <br />
+        <br />
+        <br />
+    </main>
+    <footer id="noQueEstouTrabalhando">
+        <center>
+            <table>
+                <tr>
+                    <th class="col-1 col-md-1"><center>TRANSPORTADORA</center></th>
+                    <th class="col-10 col-md-10"><center>REMESSA</center></th>
+                    <th class="col-10 col-md-10"><center>DOCA</center></th>
+                </tr>
+                <tbody id="itensTable"></tbody>
+
+
+            </table>
+
+        </center>
+    </footer>
+
+
+    <script type="text/javascript">
+        var urlBase = "http://10.251.16.112/";
+        var pisca = false;
+        //$("#desempenho").hide();
+
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", urlBase + "/TaktAPI/api/Linecab/Line", true);
+            xhttp.send();
+        }
+        $(document).ready(function () {
+        
+            setInterval(function () {
+                if ($("#noQueEstouTrabalhando").is(":hidden") == false) {
+                    //$("#noQueEstouTrabalhando").hide();
+                    //$("#desempenho").show();
+                } else if ($("#noQueEstouTrabalhando").is(":hidden") == true) {
+                    $("#noQueEstouTrabalhando").show();
+                    $("#desempenho").hide();
+                }
+                if (pisca == true) {
+                    setTimeout(function () {
+                        $(`body`).css('background-color', '#E00003');
+                        //$(`#stopTime`).css('color', 'black');
+                    }, 1000);
+                    $(`body`).css('background-color', '#000000');
+                    //$(`#stopTime`).css('color', 'red');
+                } else {
+                    $(`body`).css('background-color', '#000000');
+                }
+            }, 2000);
+
+            setInterval(function () {
+                ajax();
+            }, 1000);
+
+
+        })
+        function ajax() {
+            $.ajax({
+                url: urlBase + "/TaktAPI/api/Linecab/Line",
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    $("#takt").innerHTML(data.TaktTime);
+                    $("#stopTime").innerHTML(data.StopTime);
+                    $("#objetivo").innerHTML(data.Target);
+                    $("#atual").innerHTML(data.Actual);
+
+                    $("#endShift").html("")
+                    for (var n = 0; n <= 8; n++) {
+                        if (data.AndonWorkStation[n] == true || data.EmergencyWorkStation[n] == true) {
+                            if (data.EmergencyWorkStation[n] === true) {
+                                $(`#andon_${n}`).css('background-color', 'red'); //
+
+                                pisca = true;
+                            } else if (data.AndonWorkStation[n] === true) {
+                                $(`#andon_${n}`).css('background-color', 'red'); //'#DEDE36'
+                                pisca = true;
+                            }
+                        } else if (data.AndonWorkStation[n] === false) {
+                            $(`#andon_${n}`).css('background-color', 'green');
+                            pisca = false;
+                        }
+                    }
+                }
+            });
+
+
+        };
+
+    </script>
+</div>
+
+</body>
+</html>

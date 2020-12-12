@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewData["Title"] = "Read";
+}
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<body>
+    <h1>Read</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Component</th>
+                <th>Mu Code</th>
+                <th>Cab Rounds</th>
+                <th>SKD Rounds</th>
+                <th>Skid Rounds</th>
+                <th>Ecu Rounds</th>
+                <th>Cab Line</th>
+                <th>Skd Line</th>
+                <th>Skid Line</th>
+                <th>Ecu Line</th>
+                <th>Cab Dock</th>
+                <th>Skd Dock</th>
+                <th>Skid Dock</th>
+                <th>Ecu Dock</th>
+                <th>Saved Hour</th>
+            </tr>
+
+        </thead>
+        <tbody id="tableBody">
+            
+            
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var urlBase = "https://localhost:5005";
+
+
+        $(document).ready(function () {
+            AjaxCall();
+        })
+        
+
+
+
+
+        function AjaxCall() {
+            console.log("ososo");
+            $.ajax({
+                type: "GET",
+                url: urlBase + "/Api/RoundsRule",
+                //contentType: 'application/json',
+                //data: _data,
+                success: function (result) {
+                    console.log(result);
+                    for (var i = 0; i < result.length; i++) {
+                        $("#tableBody").append(`
+                        <tr>
+                            <td>${result[i].roundsId}</td>
+                            <td>${result[i].component}</td>
+                            <td>${result[i].muCode}</td>
+                            <td>${result[i].cabRounds}</td>
+                            <td>${result[i].skdRounds}</td>
+                            <td>${result[i].skidRounds}</td>
+                            <td>${result[i].ecuRounds}</td>
+                            <td>${result[i].cabLine}</td>
+                            <td>${result[i].skdLine}</td>
+                            <td>${result[i].skidLine}</td>
+                            <td>${result[i].ecuLine}</td>
+                            <td>${result[i].cabDock}</td>
+                            <td>${result[i].skdDock}</td>
+                            <td>${result[i].skidDock}</td>
+                            <td>${result[i].ecuDock}</td>
+                            <td>${result[i].savedHour}</td>
+                        </tr>
+                    `);
+                    }
+                }
+            });
+        }
+    </script>
+</body>

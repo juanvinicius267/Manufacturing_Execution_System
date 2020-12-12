@@ -1,0 +1,119 @@
+﻿
+
+
+<h1>Create</h1>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<body>
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <span>Component</span>
+            <input class=" col-md-11" type="text" id="component" />
+            <hr />
+            <span>MuCode</span>
+            <input class=" col-md-11" type="text" id="mucode" />
+            <hr />
+            <span>Cab Rounds</span>
+            <input class=" col-md-11" type="number" id="cabrounds" />
+            <hr />
+            <span>Skd Rounds</span>
+            <input class=" col-md-11" type="number" id="skdrounds" />
+            <hr />
+            <span>Skid Rounds</span>
+            <input class=" col-md-11" type="number" id="skidrounds" />
+            <hr />
+            <span>Ecu Rounds</span>
+            <input class=" col-md-11" type="number" id="ecurounds" />
+            <hr />
+        </div>
+        <div class="col-12 col-md-6">
+            <span>Cab Line</span>
+            <input class="col-md-12" type="checkbox" id="cabline" />
+            <hr />
+            <span>Skd Line</span>
+            <input class="col-md-12" type="checkbox" id="skdline" />
+            <hr />
+            <span>Skid Line</span>
+            <input class="col-md-12" type="checkbox" id="skidline" />
+            <hr />
+            <span>Ecu Line</span>
+            <input class="col-md-12" type="checkbox" id="eculine" />
+            <hr />
+            <span>Cab Dock</span>
+            <input class="col-md-12" type="checkbox" id="cabdock" />
+            <hr />
+            <span>Skd Dock</span>
+            <input class=" col-md-12" type="checkbox" id="skddock" />
+            <hr />
+            <span>Skid Dock</span>
+            <input class="col-md-12" type="checkbox" id="skiddock" />
+            <hr />
+            <span>Ecu Dock</span>
+            <input class="col-md-12" type="checkbox" id="ecudock" />
+            <hr />
+
+        </div>
+
+    </div>
+    
+
+
+
+
+
+
+
+
+    <button class="btn-danger" id="sendInfo">Send</button>
+    <script type="text/javascript">
+
+        var urlBase = "https://localhost:5005";
+        console.log($("#cabline").is(':checked'));
+        function TrueOrFalse(value) {
+            if (value.is(':checked')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        $("#sendInfo").on('click', function () {
+            var data = {
+                component: $("#component").val().toUpperCase(),
+                muCode: $("#mucode").val().toUpperCase(),
+                cabRounds: $("#cabrounds").val(),
+                skdRounds: $("#skdrounds").val(),
+                skidRounds: $("#skidrounds").val(),
+                ecuRounds: $("#ecurounds").val(),
+                cabLine: TrueOrFalse($("#cabline")),
+                skdLine: TrueOrFalse($("#skdline")),
+                skidLine: TrueOrFalse($("#skidline")),
+                ecuLine: TrueOrFalse($("#eculine")),
+                cabDock: TrueOrFalse($("#cabdock")),
+                skdDock: TrueOrFalse($("#skddock")),
+                skidDock: TrueOrFalse($("#skiddock")),
+                ecuDock: TrueOrFalse($("#ecudock"))
+                //savedHour: ""
+            };
+            console.log(JSON.stringify(data));
+            AjaxCall(JSON.stringify(data));
+        });
+        
+       
+
+        function AjaxCall(_data) {
+            console.log(_data);
+            $.ajax({
+                type: "POST",
+                url: urlBase + "/Api/RoundsRule",                
+                contentType: 'application/json',
+                data: _data,
+                success: function (result) {
+                    console.log(result);
+                }
+            });
+        }
+
+
+
+    </script>
+</body>

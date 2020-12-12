@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Read";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<body>
+    <h1>Read info on Database</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>MaxloadId</th>
+                <th>BatchId</th>
+                <th>ContainerNumber</th>
+                <th>Component</th>
+                <th>MuCode</th>
+                <th>BoxeNumber</th>
+                <th>priorityNumber</th>
+                <th>priorityNumber2</th>
+                <th>savedHour</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        
+            <tbody id="infoTable"></tbody>
+       
+
+    </table>
+    <script type="text/javascript">
+        readDataFromDb();
+        function readDataFromDb() {
+            $.get("https://localhost:5005/api/Maxload", function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    $("#infoTable").append(`
+                         <tr>
+                            <td>${data[i].maxloadId}</td>
+                            <td>${data[i].batchId}</td>
+                            <td>${data[i].containerNumber}</td>
+                            <td>${data[i].component}</td>
+                            <td>${data[i].muCode}</td>
+                            <td>${data[i].boxeNumber}</td>
+                            <td>${data[i].priorityNumber}</td>
+                            <td>${data[i].priorityNumber2}</td>
+                            <td>${data[i].savedHour}</td>
+                            <td><button class="btn btn-danger btn-sm" id=""><a style="text-decoration: underline none; color: white " href="#">Delete</a></button></td>
+
+                        </tr>
+                    `);
+                    
+                    
+                }
+                $("#infoTable").css("height", "200px");
+            });
+        }
+    </script>
+</body>

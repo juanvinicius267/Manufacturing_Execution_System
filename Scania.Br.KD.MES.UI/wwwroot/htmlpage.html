@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        .timer {     
+            color: silver;
+        }     
+
+        .stopTime {            
+            color: red;
+            padding-left: 10rem;     
+            border-spacing: 0;       
+        }
+
+        .timerSize {
+            padding-top: 3.75rem;
+            display: inline;
+            font-size: 12.5rem;
+            line-height: 9.0625rem
+        }       
+
+        .andons {
+            display: inline;
+            font-size: 3.75rem;
+            border-style: solid black;
+            border-radius: 1.5625rem;
+            background-color: green;
+            padding: 0  2.875rem;            
+        }    
+        .componentsInfo{
+            display: inline;           
+            padding: 0  16.5rem;  
+            font-size: 1.25rem;
+            align-items: center;
+            color: silver;
+            
+        }
+        .componentsContainers{
+            display: inline;
+            font-size: 5.75rem;
+            padding: 0  17rem;              
+            align-items: center;
+            color: silver;
+        }
+        .componentsContainersInfo{
+            display: inline;           
+            padding: 0  17.4rem;  
+            font-size: 1.25rem;
+            align-items: center;
+            color: silver;
+            
+        }
+        .tableComponents{
+            display: inline;           
+          
+            font-size: 2.25rem;
+            align-items: center;
+            color: silver;
+            padding-right: 250px;
+        }
+        .tdBatch{
+            padding: 0;
+            padding-right: 200px;
+            font-size: 2.25rem;
+            align-items: center;
+            background-color: blue;
+            color: silver;
+        }
+       .messages{
+        padding: 1rem ;
+        align-content: center;
+        font-size: 4.25rem;
+       }
+        #divLunch{
+            font-size: 10rem;
+            color: white;
+            background-color: blue;
+            height: 1000px;
+            align-items: center;
+        }
+        .returnHour{
+            font-size: 20rem;
+            padding: 0 35rem;
+        }
+    </style>
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap-reboot.min.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+    <div id="divAll" style="background-color: black; color: white; overflow: hidden;min-height: 700px;">
+        <header>
+            <center>
+                <div class="andons " id="andon_0">1</div>
+                <div class="andons " id="andon_1">2</div>
+                <div class="andons " id="andon_2">3</div>
+                <div class="andons " id="andon_3">4</div>
+                <div class="andons " id="andon_4">5</div>
+                <div class="andons " id="andon_5">6</div>
+                <div class="andons " id="andon_6">7</div>
+                <div class="andons " id="andon_7">8</div>
+            </center>
+        </header>
+
+        <center>
+            <table cellspace=0>
+                <thead>
+                    <tr>
+                        <td>
+                            <div class="timerSize timer" id="timer">00:00</div>
+                        </td>
+                        <td></td>
+                        <td>
+                            <div class="timerSize stopTime" id="stopTime">00:00</div>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="componentsInfo">TAKT TIMER</div>
+                        </td>
+                        <td>
+                            <div class="componentsInfo" id="compStopTime" style="color:red;">STOP TIME</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="componentsContainers" id="target">100</div>
+                        </td>
+                        <td>
+                            <div class="componentsContainers" id="atual">050</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="componentsContainersInfo">OBJETIVO</div>
+                        </td>
+                        <td>
+                            <div class="componentsContainersInfo">ATUAL</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+        <br />
+        <center>
+            <table id="tabelaRemessa">
+                <tbody id="corpoRemessa">
+                    <tr id="td_0"></tr>
+                    <tr id="td_1"></tr>
+                    <tr id="td_2"></tr>
+                    <tr id="td_3"></tr>
+                </tbody>
+            </table>
+            <p class="messages"></p>
+            <!-- BOTÃO DE EMERGENCIA ACIONADO NO POSTO 1-->
+        </center>
+
+    </div>
+    <div id="divLunch">
+        <table>
+            <tr>
+                <td>
+                    <p>A produção retornara em:</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="returnHour">00:00</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var url = "TaktAPI/api/Linecab/Line";
+        var pisca = false;
+        var tag = 0 ;
+        //Change URL of page 
+        window.history.replaceState('string', 'Title', '/');
+
+        // $('#tabelaRemessa').hide();
+        $("body").css("background-color", "black");
+        setInterval(function () {
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    if (tag >= 10) {
+                        callMes();
+                        
+                    }
+                    tag = tag +1;
+                    // console.log(tag)
+                    //console.log(data);
+                    setDataOnHtml(data);
+                    
+                }
+            }).fail(function (err) {
+               // console.log(err);
+            });
+
+
+        }, 500)
+        function setDataOnHtml(data) {
+            $("#timer").html(data.TaktTime)
+            $("#stopTime").html(data.StopTime)
+            $("#atual").html(data.Actual)
+            $("#target").html(data.Target)
+            for (var i = 0; i <= 7; i++) {
+                if (data.AndonWorkStation[i] == true || data.EmergencyWorkStation[i] == true) {
+                    if (data.EmergencyWorkStation[i] == true) {
+                        $("#andon_" + i).css('background-color', 'yellow'); //
+                        showEmergencyMessage(id);
+                    } else if (data.AndonWorkStation[i] == true) {
+                        $("#andon_" + i).css('background-color', 'red'); //'#DEDE36' 
+
+                    }
+                } else if (data.AndonWorkStation[i] == false && data.EmergencyWorkStation[i] == false) {
+                    $("#andon_" + i).css('background-color', 'green');//
+
+                }
+            }
+            // var almoço = new Date('01-01-2020 12:30:00')
+            // console.log(almoço.get);
+            changeBackgroudColor(data);
+        }
+        function showTabelaRemessa() {
+            $('#tabelaRemessa').show();//change to show
+            $(".messages").hide();
+        }
+        function showEmergencyMessage(id) {
+            $('#tabelaRemessa').hide();
+            $(".messages").show();
+            $(".messages").html("BOTÃO DE MERGENCIA ACIONADO NO POSTO  " + (id + 1));
+
+        }
+        function showMessages(id) {
+            $('#tabelaRemessa').hide();
+            $(".messages").show();
+
+
+            if (id === 0) {
+                $(".messages").html("TROCADOR DE SKID EM PROCESSO - POSTO" + (id + 1));
+                $("body").css('background-color', 'black');
+                $("header").css('background-color', 'black');
+                $("table").css('background-color', 'black');
+                $("#divAll").css('background-color', 'black');
+                $("#stopTime").css('color', 'red');
+                $("#compStopTime").css('color', 'red');
+            } else if (id !== 0 && id !== 7 && id !== 6) {
+                $(".messages").html("NECESSARIO AJUDA NO POSTO " + (id + 1));
+                $("body").css('background-color', '#E00003');
+                $("header").css('background-color', '#E00003');
+                $("table").css('background-color', '#E00003');
+                $("#divAll").css('background-color', '#E00003');
+                $("#stopTime").css('color', 'black');
+                $("#compStopTime").css('color', 'black');
+            } else if (id == 7) {
+                $(".messages").html("AGUARDANDO RETIRADA DO MATERIAL NO POSTO " + (1 + id));
+                $("body").css('background-color', 'orangered');
+                $("header").css('background-color', 'orangered');
+                $("table").css('background-color', 'orangered');
+                $("#divAll").css('background-color', 'orangered');
+                $("#stopTime").css('color', 'black');
+                $("#compStopTime").css('color', 'black');
+            }
+            else if (id == 6) {
+                $(".messages").html("QUALITY GATE INSPECIONANDO O PRODUTO - POSTO " + (id + 1));
+                $("body").css('background-color', '#E00003');
+                $("header").css('background-color', '#E00003');
+                $("table").css('background-color', '#E00003');
+                $("#divAll").css('background-color', '#E00003');
+                $("#stopTime").css('color', 'black');
+                $("#compStopTime").css('color', 'black');
+            }
+        }
+        function changeBackgroudColor(data) {
+            if ((data.AndonWorkStation[0] === true ||
+                data.AndonWorkStation[1] === true ||
+                data.AndonWorkStation[2] === true ||
+                data.AndonWorkStation[3] === true ||
+                data.AndonWorkStation[4] === true ||
+                data.AndonWorkStation[5] === true ||
+                data.AndonWorkStation[6] === true ||
+                data.AndonWorkStation[7] === true)) {
+
+                if (data.AndonWorkStation[0] === false) {
+                    $("body").css('background-color', '#E00003');
+                    $("header").css('background-color', '#E00003');
+                    $("table").css('background-color', '#E00003');
+                    $("#divAll").css('background-color', '#E00003');
+                    $("#stopTime").css('color', 'black');
+                    $("#compStopTime").css('color', 'black');
+                }
+
+
+                if (data.AndonWorkStation[0] == true) {
+                    showMessages(0);
+                }
+                if (data.AndonWorkStation[1] == true) {
+                    showMessages(1);
+                }
+                if (data.AndonWorkStation[2] == true) {
+                    showMessages(2);
+                }
+                if (data.AndonWorkStation[3] == true) {
+                    showMessages(3);
+                }
+                if (data.AndonWorkStation[4] == true) {
+                    showMessages(4);
+                }
+                if (data.AndonWorkStation[5] == true) {
+                    showMessages(5);
+                }
+                if (data.AndonWorkStation[6] == true) {
+                    showMessages(6);
+                }
+                if (data.AndonWorkStation[7] == true && data.AndonWorkStation[6] !== true) {
+                    showMessages(7);
+                }
+
+
+            } else if (data.AndonWorkStation[0] === false ||
+                data.AndonWorkStation[1] === false ||
+                data.AndonWorkStation[2] === false ||
+                data.AndonWorkStation[3] === false ||
+                data.AndonWorkStation[4] === false ||
+                data.AndonWorkStation[5] === false ||
+                data.AndonWorkStation[6] === false ||
+                data.AndonWorkStation[7] === false) {
+                $("body").css('background-color', 'black');
+                $("header").css('background-color', 'black');
+                $("table").css('background-color', 'black');
+                $("#divAll").css('background-color', 'black');
+                $("#stopTime").css('color', 'red');
+                $("#compStopTime").css('color', 'red');
+                showTabelaRemessa();
+            }
+        }
+        function getBatches(data) {
+            console.log(data[ind])
+            try {
+                for (var ind = 0; ind <= 3; ind++) {
+                    console.log(data[ind].country);
+                    $("#td_" + ind).html("<td><div class='tdBatch'><img src='" + document.URL + "TV/images/" + data[ind].country.slice(0, 2) + ".png' style='width:3rem;height:2rem;'> - " + data[ind].country + data[ind].batch.slice(0, 4) + "/" + data[ind].batch.slice(4, 6) + "</div></td><td><div class='tdBatch'>CONTAINER " + data[ind].doca + "</div></td><td><div class='tdBatch'>0010</div></td>");
+                }
+            } catch (error) {
+
+            }
+
+        }
+
+        function callMes() {
+            $.ajax({
+                url: "Schedule/api/ApiScheduleContainer",
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    getBatches(data)
+                    tag = 0;
+                }
+            });
+        }
+        callMes();
+        function lunchTime() {
+            var actualDate = new Date();
+            var actualHours = actualDate.getHours();
+            var actualMinutes = actualDate.getMinutes();
+            var stLunchHours = 12;
+            var stLunchMinutes = 00;
+            var endLunchHours = 13;
+            var endLunchMinutes = 00;
+            if (((actualHours >= stLunchHours) == true) && ((actualHours <= endLunchHours) == true)) { //&&
+                //(actualMinutes >= stLunchMinutes) ==true && (actualMinutes <= endLunchMinutes) ==true) {
+                $("#divAll").hide();
+                $("#divLunch").show();
+                $("#divLunch").css("background-color", "blue");
+                var hour = actualHours - endLunchHours;
+                var minut = actualMinutes - endLunchMinutes;
+                $('.returnHour').html(hour + ":" + minut);
+
+            } else {
+                $("#divAll").show();
+                $("#divLunch").hide();
+            }
+        }
+        $("#divLunch").hide();
+    </script>
+
+</body>
+
+</html>

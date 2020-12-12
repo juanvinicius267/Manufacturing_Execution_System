@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MaxLoad Synchronization</title>
+</head>
+<body>
+
+    <div class="col-5 col-md-5">
+
+    </div>
+    <div class="col-5 col-md-5">
+        @*<input type="file" />*@
+        <form method="POST" action="" enctype="multipart/form-data" id="myform">
+            <div>
+                <input type="file" id="file" name="" />
+                <input type="button" class="button" value="Upload" id="but_upload">
+            </div>
+        </form>
+
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+        urlBase = "https://localhost:5005/api/LoadFile";
+        $("#but_upload").click(function () {
+
+            console.log(urlBase);
+           // $("#file").attr('name', $('#Nome').val());
+
+            var fd = new FormData();
+            var files = $('#file')[0].files[0];
+            fd.append('file', files);
+            myfunction(fd);
+
+        });
+        function myfunction(fd) {
+            $.ajax({
+                url: urlBase ,
+                type: 'POST',                
+                contentType: false, //,"text/plain"               
+                processData: false,
+                data: fd,
+                erro: function (response) {
+                    alert(response);
+                },
+                success: function (response) {
+                    alert(response);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

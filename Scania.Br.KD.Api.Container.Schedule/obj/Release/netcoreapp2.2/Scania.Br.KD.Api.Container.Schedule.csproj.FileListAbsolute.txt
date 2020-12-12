@@ -1,0 +1,14 @@
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\bin\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.deps.json
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\bin\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.runtimeconfig.json
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\bin\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.runtimeconfig.dev.json
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\bin\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.dll
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\bin\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.pdb
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.csprojAssemblyReference.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.csproj.CoreCompileInputs.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.RazorAssemblyInfo.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.RazorAssemblyInfo.cs
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.AssemblyInfoInputs.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.AssemblyInfo.cs
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.RazorTargetAssemblyInfo.cache
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.dll
+C:\Users\ssbjvq.GLOBAL\Desktop\Scania.Br.KD.MES\Scania.Br.KD.Api.Container.Schedule\obj\Release\netcoreapp2.2\Scania.Br.KD.Api.Container.Schedule.pdb
